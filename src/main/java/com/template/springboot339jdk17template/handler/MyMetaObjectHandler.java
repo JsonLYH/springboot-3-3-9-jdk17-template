@@ -19,10 +19,22 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void insertFill(MetaObject metaObject) {
-        this.setFieldValByName("createTime", new Date(), metaObject);
-        this.setFieldValByName("updateTime", new Date(), metaObject);
-        this.setFieldValByName("createTimestamp",System.currentTimeMillis(),metaObject);
-        this.setFieldValByName("updateTimestamp",System.currentTimeMillis(),metaObject);
+        //判断是否有创建时间
+        if (metaObject.hasSetter("createTime")) {
+            this.setFieldValByName("createTime", new Date(), metaObject);
+        }
+        //判断是否有更新时间
+        if (metaObject.hasSetter("updateTime")) {
+            this.setFieldValByName("updateTime", new Date(), metaObject);
+        }
+        //判断是否有创建时间戳
+        if (metaObject.hasSetter("createTimestamp")) {
+            this.setFieldValByName("createTimestamp",System.currentTimeMillis(),metaObject);
+        }
+        //判断是否有更新时间戳
+        if (metaObject.hasSetter("updateTimestamp")) {
+            this.setFieldValByName("updateTimestamp",System.currentTimeMillis(),metaObject);
+        }
     }
 
     /**
@@ -32,7 +44,13 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.setFieldValByName("updateTime", new Date(), metaObject);
-        this.setFieldValByName("updateTimestamp",System.currentTimeMillis(),metaObject);
+        //判断是否有更新时间
+        if (metaObject.hasSetter("updateTime")) {
+            this.setFieldValByName("updateTime", new Date(), metaObject);
+        }
+        //判断是否有更新时间戳
+        if (metaObject.hasSetter("updateTimestamp")) {
+            this.setFieldValByName("updateTimestamp",System.currentTimeMillis(),metaObject);
+        }
     }
 }
